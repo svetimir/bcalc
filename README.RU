@@ -1,6 +1,6 @@
 # bcalc
 == ENG ==
-Miscellaneous bank deposit calculations via single web-page, requires angularjs. Now only on russian, sorry.
+Miscellaneous bank deposit calculations via single web-page, requires angularjs. Now only in russian, sorry.
 == RU ==
 Краткое описание.
 Проект задумывался как страница-помощник потенциальному вкладчику да и любому человеку, 
