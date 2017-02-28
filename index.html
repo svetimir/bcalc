@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--
+	ИМЯ_ПРОЕКТА: ТыВкладчик, англ. YouDoInvest
+	Банковский калькулятор
+	АВТОР: Георгий Яшин, ifi@yandex.ru
+	ДАТА_СОЗДАНИЯ: 12.05.2016
+	ДАТА_ПОСЛЕДНЕЙ_ВЕРСИИ: 14.05.2016
+	
+	Формула расчета процентов по вкладу
+	Sp = ( Sv * Pct * (Nd - 1) ) / Ny
+	Sp - сумма процентов по вкладу
+	Sv - сумма вклада
+	Pct - процентная ставка
+	Nd - число дней начисления процентов
+	Ny - число дней в году
+-->
+<html ng-app="fcalc">
+<head>
+<meta charset="UTF-8" />
+<title>YouDoInvest v0.0.1a</title>
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css" />
+<!-- Подключаем AngularJS -->
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script>
+var app = angular.module("fcalc",[]);
+app.controller("main", function($scope){
+//форматирование вывода
+	$scope.outputformat=function(s)
+	{
+		if(isNaN(s)){ return "Введите корректные данные!";}
+		var out = s.toFixed(2);
+		var arr=out.split(".");
+		return arr[0]+" рублей "+arr[1]+" копеек";
+	}
+});
+</script>
+<style type="text/css">
+input, p, span{
+	margin: 5px;
+}
+h1{
+	font-size: 22px;
+	margin: 5px;
+}
+#dmain{
+	margin: 10px;
+	padding: 10px;
+}
+</style>
+</head>
+<body>
+	<div ng-controller="main" id="dmain" ng-init="ny=365;sv=10000;pct=12;nd=180;" style="max-width:400px;">
+	<!-- <header class="w3-container w3-light-grey w3-padding-hor-16">--><h1>YouDoInvest v0.0.1a</h1><!--</header>-->
+		<div class="w3-container w3-light-grey w3-padding-hor-16">
+		<span>Сумма вклада в рублях</span><input placeholder="Введите сумму вклада" ng-model="sv" required /><br />
+		<span>Процент по вкладу</span><input placeholder="Введите процент по вкладу" ng-model="pct" required /><br />
+		<span>Количество дней вклада</span><input placeholder="Введите количество дней вклада" ng-model="nd" required /><br />
+		<span>Количество дней в году</span><input ng-model="ny" required disabled/><br />
+		<div>
+			<p>Итоговая сумма получаемых вами процентов:</p>
+			<span style="background-color:lightyellow;">{{outputformat(sv*pct/100*(nd-1)/ny)}}</span>
+		</div>
+		</div>
+	</div>
+</body>
+</html>
